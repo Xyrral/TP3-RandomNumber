@@ -9,6 +9,7 @@ def ft_Bob_Mode(nb_max,triche):
     nb_ia = random. randint(0, nb_max)
     t = 0
     print("Alice:Bien, commençons.")
+    #Déroulement de la partie si l'IA ne triche pas
     if triche == False:
          while nb != nb_ia:
             if t == 11:
@@ -20,7 +21,7 @@ def ft_Bob_Mode(nb_max,triche):
                 nb_q = int(input("Bob:"))
                 print("Alice:Cherchez-vous à savoir si",nb_q,"est inférieur ou suppérieur à mon nombre ?")
                 inf = input("Bob:")
-                if inf == "inférieur":
+                if inf == "inférieur": #VComparaison du nombre avec la proposition du joueur
                     if nb_q < nb_ia:
                         print("Alice:Il l'est.")
                         t = t + 1
@@ -40,7 +41,7 @@ def ft_Bob_Mode(nb_max,triche):
                     else:
                         print("Alice:Il ne l'est pas.")
                         t = t + 1
-                else:
+                else: #Géstion d'une réponse incorrecte
                     print("Alice:Je ne comprends pas.")
             elif q == "réponse":
                 print("Alice:Oh une supposition, allez-y :")
@@ -87,9 +88,9 @@ def ft_Bob_Mode(nb_max,triche):
                     else:
                         print("Alice:...")
                         t = t + 1
+                    e = e + 1
                 else:
                     print("Alice:Je ne comprends pas.")
-                e = e + 1
             elif q == "réponse":
                 print("Alice:Oh une supposition, allez-y :")
                 nb = int(input("Bob:"))
@@ -124,17 +125,16 @@ def ft_Alice_Mode(): #L'ia joue Alice et devine le nombre#
                     found = True
                     b_supp = b_inf + 2
                 b_temp = b_inf + temp
-                print(b_temp,b_supp,b_inf,temp)
-                print("Bob:Est-il inférieur à",b_temp,"?")
+                print("Bob:Est-il suppérieur à",b_temp,"?")
                 r = input("Alice:")
-                if r == "oui":
+                if r == "non":
                     b_supp = b_temp
                 else:
                     b_inf = b_temp
             else:
                 found = True
-        print("Bob:C'est",b_supp - 1)
-    else: 
+        print("Bob:C'est",b_inf + 1)
+    else:
         b_inf = 500
         while found != True:
             if (b_supp - b_inf) > 2:
@@ -144,7 +144,6 @@ def ft_Alice_Mode(): #L'ia joue Alice et devine le nombre#
                     found = True
                     b_supp = b_inf + 2
                 b_temp = b_inf + temp
-                print(b_temp,b_supp,b_inf,temp)
                 print("Bob:Est-il inférieur à",b_temp,"?")
                 r = input("Alice:")
                 if r == "oui":
@@ -160,18 +159,39 @@ def ft_mode_Pr():
         print("Je n'ai pas compris")
         player = input("Etes vous Bob ou Alice ?")
     if player == "Bob":
-        ft_Bob_Mode(999, True)
+        maximum = int(input("Choisissez le maximum:"))
+        ft_Bob_Mode(maximum, False)
         print("Alice:... Tsss bien joué")
     elif player == "Alice":
         ft_Alice_Mode()
         print("Bob:Je suis imbattable !")
 def ft_mode_h():
-    print("JARVIS:Alice vous a défié !")
-    print("JARVIS:Survivez à 6 manches, vous êtes limité à 10 essais pour trouver le chiffre.")
-    print("JARVIS:Il se pourrait qu'Alice s'énerve si elle viens a perdre, soyez vigilant.")
+    print("LUMA:Alice vous a défié !")
+    print("LUMA:Survivez à 6 manches, vous êtes limité à 10 essais pour trouver le chiffre.")
+    print("LUMA:Il se pourrait qu'Alice s'énerve si elle viens a perdre, soyez vigilant.")
     print("Alice:On va commencer en douceur, il ne faudrais pas brusquer ton QI d'huitre.")
-    print("Alice:Je vais choisir un chiffre pour commencer")
+    print("Alice:Je vais choisir un chiffre pour commencer.")
     ft_Bob_Mode(10, False)
+    print("Alice:Tu ne serais pas une huitre, étonant.")
+    print("Alice:Et si on augmentait la difficulté.")
+    print("Alice:Entre 0 et 50 cette fois.")
+    ft_Bob_Mode(50, False)
+    print("Alice:Hmpf, ne t'emporte pas c'était encore simple.")
+    print("Alice:Et si l'on passais à 150.")
+    ft_Bob_Mode(150, False)
+    print("Alice:Admettons que tu ne sois pas un animal, n'éspère pas gagner longtemps.")
+    lvl4 = random. randint(400, 425)
+    print("Alice:Passons à ",lvl4,".")
+    ft_Bob_Mode(lvl4, False)
+    print("LUMA:Attention! Alice s'emporte il est probable qu'elle triche.")
+    print("LUMA:Si vous la suspectez de tricher dites le, elle l'admettra si c'est le cas.")
+    print("Alice: Encore une fois jusqu'à",lvl4,".")
+    ft_Bob_Mode(lvl4, True)
+    print("Alice: OK, maintenant on passe aux choses sérieuses on va jusqu'à 999.")
+    ft_Bob_Mode(999, True)
+    print("Alice: C'EST IMPOSSIBLE JE SUIS IMBATTABLE MISERABLE CLOPORTE...")
+    print("LUMA:Je suis terriblement désolé du comportement d'Alice, elle s'emporte quelque peu.")
+    print("LUMA:Ne lui en voulez pas, elle voue une haine certaine aux humains depuis les evenements de la tour.")
 
 
 mode = str(input("Voulez-vous jouer en Partie rapide ou au mode Histoire:"))
